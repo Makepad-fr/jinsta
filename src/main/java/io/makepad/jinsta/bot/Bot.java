@@ -242,10 +242,10 @@ public class Bot extends AbstractBot implements IBot {
     }
 
     public void getUserFollowers(String username) {
+        int nbFollowers = this.getUserFollowersNb(username);
         if(this.isUserContactsVisible(username)) {
-            int nbFollowers = this.getUserFollowersNb(username);
-            System.out.println("Number of followers " + nbFollowers);
-            By followerPath = By.xpath(String.format("//a[@href='%s']", super.followersHref(username)));
+            String buttonSelector = String.format("//a[@href='%s']", super.followersHref(username));
+            By followerPath = By.xpath(buttonSelector);
             WebElement element = super.driver.findElement(followerPath);
             super.wait.until(presenceOfElementLocated(followerPath));
             super.wait.until(elementToBeClickable(followerPath));
