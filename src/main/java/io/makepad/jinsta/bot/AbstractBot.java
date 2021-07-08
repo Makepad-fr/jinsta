@@ -62,7 +62,9 @@ abstract class AbstractBot {
     JavascriptExecutor js = (JavascriptExecutor)driver;
     js.executeScript("arguments[0].scrollBy(0,arguments[0].scrollHeight)",element);
     try {
-      Thread.sleep((int)(Math.random() * 1000));
+      int sleepFor = (int)(Math.random() * 100000);
+      System.out.printf("Will sleep for %d\n", sleepFor);
+      Thread.sleep(sleepFor);
     } catch (InterruptedException e) {
       System.err.println("Sleep interrupted");
     }
