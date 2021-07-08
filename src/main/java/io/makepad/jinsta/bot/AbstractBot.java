@@ -52,14 +52,7 @@ abstract class AbstractBot {
     driver.get(userProfileUrl(username));
   }
 
-  /**
-   * Function accepts the cookie banner
-   */
-  void acceptCookies() {
-    this.wait.until(presenceOfElementLocated(By.xpath("(//div[@role='dialog']//button)[1]")));
-    WebElement acceptCookies = this.driver.findElement(By.xpath("(//div[@role='dialog']//button)[1]"));
-    acceptCookies.click();
-  }
+
 
   /**
    * Function scrolls the given element
@@ -107,5 +100,16 @@ abstract class AbstractBot {
     return String.format("/%s/following/", username);
   }
 
+  /**
+   * Function accepts the cookie banner
+   */
+  void acceptCookies() {
+    By path = By.xpath("(//div[@role='dialog']//button)[1]");
+    if (this.isPresent(path)) {
+      WebElement acceptCookies = this.driver
+          .findElement(path);
+      acceptCookies.click();
+    }
+  }
 
 }
