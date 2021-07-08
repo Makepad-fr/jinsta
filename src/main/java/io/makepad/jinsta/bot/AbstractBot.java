@@ -50,6 +50,7 @@ abstract class AbstractBot {
       return;
     }
     driver.get(userProfileUrl(username));
+    this.acceptCookies();
   }
 
 
