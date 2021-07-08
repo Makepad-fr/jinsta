@@ -1,5 +1,14 @@
 package io.makepad.jinsta.bot;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.StringTokenizer;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -154,6 +163,73 @@ public class Bot extends AbstractBot implements IBot {
     */
     private void scrollPopup() {
         super.scroll(driver.findElement(By.className("isgrP")));
+    }
+
+    /**
+     * Save cookies to the given file path
+     * @param filePath The file path to save the cookies
+     */
+    public void saveCookies(String filePath) {
+        File file = new File(filePath);
+        try
+        {
+            // Delete old file if exists
+            file.delete();
+            file.createNewFile();
+            FileWriter fileWrite = new FileWriter(file);
+            BufferedWriter Bwrite = new BufferedWriter(fileWrite);
+            // loop for getting the cookie information
+            System.out.println("Number of cookies " + driver.manage().getCookies().size());
+            // loop for getting the cookie information
+            for(Cookie ck : driver.manage().getCookies())
+            {
+                Bwrite.write((ck.getName()+";"+ck.getValue()+";"+ck.getDomain()+";"+ck.getPath()+";"+ck.getExpiry()+";"+ck.isSecure()));
+                Bwrite.newLine();
+            }
+            Bwrite.close();
+            fileWrite.close();
+
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
+    }
+
+    /**
+     * Function loads the cookies from the given file path
+     * @param filePath The path of the cookie file to load
+     */
+    public void loadCookies(String filePath) {
+        try{
+
+            File file = new File(filePath);
+            FileReader fileReader = new FileReader(file);
+            BufferedReader Buffreader = new BufferedReader(fileReader);
+            String strline;
+
+            while((strline=Buffreader.readLine())!=null){
+                StringTokenizer token = new StringTokenizer(strline,";");
+                while(token.hasMoreTokens()){
+                    String name = token.nextToken();
+                    String value = token.nextToken();
+                    String domain = token.nextToken();
+                    String path = token.nextToken();
+                    Date expiry = null;
+
+                    String val;
+                    if(!(val=token.nextToken()).equals("null"))
+                    {
+                        expiry = (new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy")).parse(val);
+                    }
+                    boolean isSecure = Boolean.parseBoolean(token.nextToken());
+                    Cookie ck = new Cookie(name,value,domain,path,expiry,isSecure);
+                    driver.manage().addCookie(ck); // This will add the stored cookie to your current session
+                }
+            }
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
     }
 
     public void getUserFollowers(String username) {
