@@ -45,7 +45,7 @@ public class UserDetails {
             Bot.shared.getWait().until(presenceOfElementLocated(path));
         }
         element =Bot.shared.getDriver().findElement(path);
-        int followers = Integer.parseInt(element.getAttribute("title").replaceAll("\\s+",""));
+        int followers = Integer.parseInt(element.getAttribute("title").replaceAll("(\\s+|,)",""));
         System.out.println("Followers = "+followers);
         return followers;
     }
@@ -132,10 +132,15 @@ public class UserDetails {
             Bot.shared.getWait().until(elementToBeClickable(followerPath));
             element.click();
             By followerListPath = By.xpath("/html/body/div[5]/div/div/div[2]");
+            By followerRowPath = By.xpath("/html/body/div[5]/div/div/div[2]//li");
+
             Bot.shared.getWait().until(presenceOfElementLocated(followerListPath));
             WebElement e = Bot.shared.getDriver().findElement(followerListPath);
-            while()
-            scroll();
+            int nbFollowers = getNbFollowers();
+            while (Bot.shared.getDriver().findElements(followerListPath).size() <= nbFollowers) {
+                scroll();
+            }
+            System.out.println("Scrolled until the end");
         }
         return null;
     }
