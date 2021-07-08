@@ -1,8 +1,5 @@
 package io.makepad.jinsta.structs;
 
-import io.makepad.jinsta.bot.UserDetails;
-import io.makepad.jinsta.structs.BaseUser;
-
 public class UserProfile extends BaseUser {
     private boolean isVisible;
     private BaseUser[] followers;

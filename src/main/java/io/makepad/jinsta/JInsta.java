@@ -1,17 +1,12 @@
 package io.makepad.jinsta;
 
 
-import io.makepad.jinsta.bot.Auth;
-import io.makepad.jinsta.bot.UserDetails;
+import io.makepad.jinsta.bot.Bot;
 
 public class JInsta {
-    public UserDetails profile;
-    private final Auth auth = new Auth();
-    public JInsta(String uname,String pwd){
-        this.auth.login(uname,pwd);
-    }
-
-    public void userProfile(String uname){
-        this.profile = new UserDetails(uname);
-    }
+  public Bot bot;
+  public JInsta(String username, String password) {
+    this.bot = new Bot();
+    this.bot.login(username, password);
+  }
 }
