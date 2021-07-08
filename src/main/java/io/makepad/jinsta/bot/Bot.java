@@ -22,7 +22,7 @@ public class Bot extends AbstractBot implements IBot {
       super();
     }
 
-    public void login(String username, String password) {
+    public void login(String username, String password) throws Exception {
         super.acceptCookies();
         final By userNameXPath = By.xpath("//input[@name='username']");
         super.wait.until(presenceOfElementLocated(userNameXPath));
@@ -40,7 +40,16 @@ public class Bot extends AbstractBot implements IBot {
         super.wait.until(ExpectedConditions.elementToBeClickable(savePath));
         WebElement save = super.driver.findElement(savePath);
         executor.executeScript("arguments[0].click();", save);
+        By by = By.xpath("//div[@role='presentation']");
+        if (super.isPresent(by)) {
+            System.out.println("Navigated to the feed");
+            return;
+        }
+        // TODO: Add custom expception to throw
+        throw new Exception();
     }
+
+
 
     /**
      * Returns the number of followers of the given user
