@@ -116,7 +116,7 @@ public class Bot extends AbstractBot implements IBot {
         // Get the element
         WebElement element = super.driver.findElement(path);
         // Replace spaces and commas with nothing
-        int following = Integer.parseInt(element.getText().replaceAll("\\s+",""));
+        int following = Integer.parseInt(element.getText().replaceAll("(\\s+|,)",""));
         return following;
     }
 
