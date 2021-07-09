@@ -17,6 +17,16 @@ public class Test {
       j = new JInsta(System.getenv("INSTAGRAM_USERNAME"), System.getenv("INSTAGRAM_PASSWORD"));
       j.bot.saveCookies(COOKIE_FILE_PATH);
     }
-    j.bot.getUserFollowers("yurtdisindaokumak");
+      String[] contacts = j.bot.getUserFollowers("anlat.io");
+      System.out.println("Followers of the user");
+      for (String contact: contacts) {
+        System.out.println(contact);
+      }
+      contacts = j.bot.getUserFollowings("anlat.io");
+      j.bot.close();
+      System.out.println("Followers of the user");
+      for (String contact: contacts) {
+        System.out.println(contact);
+      }
   }
 }
