@@ -305,4 +305,11 @@ public class Bot extends AbstractBot implements IBot {
         return null;
     }
 
+    /**
+     * Function closes the browser
+     */
+    public void close() {
+        super.driver.close();
+    }
+
 }
