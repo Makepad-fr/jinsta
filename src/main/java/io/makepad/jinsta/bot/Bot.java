@@ -292,4 +292,17 @@ public class Bot extends AbstractBot implements IBot {
         return null;
     }
 
+    /**
+     * Function returns the array of the usernames of the user's followings
+     * @param username The username of the user
+     * @return The array of the following's usernames of the user
+     */
+    public String[] getUserFollowings(String username) {
+        int nbFollowings = this.getUserNbFollowingNb(username);
+        if (this.isUserContactsVisible(username)) {
+            return this.getContactUserNames(super.followingsHref(username), nbFollowings);
+        }
+        return null;
+    }
+
 }
