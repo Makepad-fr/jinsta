@@ -7,7 +7,7 @@ public interface IBot {
   int getUserNbFollowingNb(String username);
   int getUserPostsNb(String username);
   String getUserBio(String username);
-  void getUserFollowers(String username);
+  String[] getUserFollowers(String username);
   void saveCookies(String filePath);
   void loadCookies(String filePath);
 }

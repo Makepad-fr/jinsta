@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.StringTokenizer;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -241,31 +242,54 @@ public class Bot extends AbstractBot implements IBot {
         }
     }
 
-    public void getUserFollowers(String username) {
+    /**
+     * Function returns the array of the contact's username with given selector and max number
+     * @param contactLinkSelector The selector of the contact button
+     * @param max The max number of the contacts
+     * @return The array of the contact's username or null if the contact information is not available
+     */
+    private String[] getContactUserNames(String contactLinkSelector, int max) {
+        String[] result = new String[max];
+        String buttonSelector = String.format("//a[@href='%s']", contactLinkSelector);
+        By followerPath = By.xpath(buttonSelector);
+        WebElement element = super.driver.findElement(followerPath);
+        super.wait.until(presenceOfElementLocated(followerPath));
+        super.wait.until(elementToBeClickable(followerPath));
+
+        element.click();
+        System.out.println("Here");
+        while (!super.driver.getCurrentUrl().equals(String.format("https://www.instagram.com%s", contactLinkSelector))) {
+        }
+        System.out.println("Navigated");
+        By followerListPath = By.xpath("//div[@role='dialog']");
+        By followerRowPath = By.xpath("//div[@role='dialog']//ul//li");
+        By followerUserNamePath = By.xpath("//div[@role='dialog']//ul//li//span//a");
+
+        super.wait.until(presenceOfElementLocated(followerListPath));
+        WebElement e = super.driver.findElement(followerListPath);
+        while (super.driver.findElements(followerRowPath).size() < max) {
+            this.scrollPopup();
+        }
+        List<WebElement> followersList = super.driver.findElements(followerUserNamePath);
+        WebElement followerElement;
+        for (int i =0; i<followersList.size(); i++) {
+            followerElement = followersList.get(i);
+            result[i] = followerElement.getAttribute("title");
+        }
+        return result;
+    }
+
+    /**
+     * Function return the array of user names of the followers of the given user
+     * @param username The username of the user
+     * @return The array of usernames of user's followers
+     */
+    public String[] getUserFollowers(String username) {
         int nbFollowers = this.getUserFollowersNb(username);
         if(this.isUserContactsVisible(username)) {
-            String buttonSelector = String.format("//a[@href='%s']", super.followersHref(username));
-            By followerPath = By.xpath(buttonSelector);
-            WebElement element = super.driver.findElement(followerPath);
-            super.wait.until(presenceOfElementLocated(followerPath));
-            super.wait.until(elementToBeClickable(followerPath));
-
-            element.click();
-            System.out.println("Here");
-            while (!super.driver.getCurrentUrl().equals(String.format("https://www.instagram.com%s", super.followersHref(username)))) {
-            }
-            System.out.println("Navigated");
-             By followerListPath = By.xpath("//div[@role='dialog']");
-             By followerRowPath = By.xpath("//div[@role='dialog']//ul//li");
-
-            super.wait.until(presenceOfElementLocated(followerListPath));
-            WebElement e = super.driver.findElement(followerListPath);
-            while (super.driver.findElements(followerListPath).size() <= nbFollowers) {
-                this.scrollPopup();
-            }
-            System.out.println("Scrolled until the end");
+            return this.getContactUserNames(super.followersHref(username), nbFollowers);
         }
-        // TODO: Complete function return
+        return null;
     }
 
 }
