@@ -16,6 +16,8 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
 import java.util.StringTokenizer;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.JavascriptExecutor;
@@ -34,6 +36,7 @@ public class JInsta implements IBot {
   private final WebDriverWait wait;
   private final Configuration config;
   public UserProfile userProfile;
+  private static final Logger logger = LogManager.getLogger(JInsta.class);
 
   public JInsta(Configuration config) throws MalformedURLException {
     FirefoxProfile profile = new FirefoxProfile();
@@ -60,23 +63,27 @@ public class JInsta implements IBot {
     BotHelpers.acceptCookies(this.wait, this.driver);
     final By userNameXPath = By.xpath("//input[@name='username']");
     this.wait.until(presenceOfElementLocated(userNameXPath));
-    this.driver.findElement(userNameXPath).sendKeys(username);
 
+    this.driver.findElement(userNameXPath).sendKeys(username);
+    logger.info("Username field completed");
     this.driver.findElement(By.xpath("//input[@name='password']")).sendKeys(password);
+    logger.info("Password field completed");
     final By submitXPath = By.xpath("//button[@type='submit']");
     this.wait.until(ExpectedConditions.elementToBeClickable(submitXPath));
-
+    logger.info("Submit button appeared");
     WebElement submit = this.driver.findElement(submitXPath);
     JavascriptExecutor executor = (JavascriptExecutor) this.driver;
     executor.executeScript("arguments[0].click();", submit);
+    logger.info("Clicked on submit button");
     final By savePath = By.xpath("//main[@role='main']//section//button");
     this.wait.until(presenceOfElementLocated(savePath));
     this.wait.until(ExpectedConditions.elementToBeClickable(savePath));
     WebElement save = this.driver.findElement(savePath);
     executor.executeScript("arguments[0].click();", save);
+    logger.info("Clicked on save informations button");
     By by = By.xpath("//div[@role='presentation']");
     if (BotHelpers.isPresent(by, this.wait)) {
-      System.out.println("Navigated to the feed");
+      logger.info("Navigated to the feed");
       this.saveCookies();
       return;
     }
@@ -87,7 +94,9 @@ public class JInsta implements IBot {
   public void login() {
     File f = new File(this.config.cookiesPath);
     if (f.exists()) {
+      logger.info("Cookie file exists");
       this.loadCookies();
+      logger.info("Cookies are loaded");
       return;
     }
     // TODO: Add custom exception
@@ -105,11 +114,14 @@ public class JInsta implements IBot {
   /** Save cookies to the given file path */
   private void saveCookies() {
     if (this.config.useCookies) {
+      logger.info("Will save cookies");
       File file = new File(this.config.cookiesPath);
       try {
         // Delete old file if exists
         file.delete();
+        logger.info("Existing cookie file is deleted");
         file.createNewFile();
+        logger.info("A new cookie file created");
         FileWriter fileWrite = new FileWriter(file);
         BufferedWriter Bwrite = new BufferedWriter(fileWrite);
         // loop for getting the cookie information
@@ -132,8 +144,9 @@ public class JInsta implements IBot {
         }
         Bwrite.close();
         fileWrite.close();
-
+        logger.info("Cookies are written in the file");
       } catch (Exception ex) {
+        logger.error("An exception happened while saving cookies");
         ex.printStackTrace();
       }
     }

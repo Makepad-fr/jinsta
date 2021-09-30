@@ -2,15 +2,19 @@ package io.makepad.jinsta.user.profile;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 
+import io.makepad.jinsta.JInsta;
 import io.makepad.jinsta.utils.BotHelpers;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class UserProfile extends AbstractUserProfile implements IUserProfile {
+  private static final Logger logger = LogManager.getLogger(JInsta.class);
   private final WebDriver driver;
   private final WebDriverWait wait;
   private String username;
@@ -65,14 +69,18 @@ public class UserProfile extends AbstractUserProfile implements IUserProfile {
    * @return Full name of the current user if present, null if not
    */
   public String getFullname() {
+    logger.debug("Get full name function called");
     super.goProfilePage(username, this.driver, this.wait);
+    logger.info("Navigated to the user page");
     String fullName = null;
     WebElement element;
     By path = By.xpath("/html/body/div[1]/section/main/div/header/section/div[2]/h1");
     if (BotHelpers.isPresent(path, this.wait)) {
+      logger.debug("Full name is present on the user's profile");
       this.wait.until(presenceOfElementLocated(path));
       element = this.driver.findElement(path);
       fullName = (element.getText());
+      logger.info(String.format("full name of the user is %s", fullName));
     }
     return fullName;
   }
