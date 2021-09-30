@@ -1,4 +1,4 @@
-package io.makepad.jinsta.structs;
+package io.makepad.jinsta.models;
 
 public class BaseUser {
    private  String username;
