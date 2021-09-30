@@ -2,7 +2,6 @@ package io.makepad;
 
 import io.makepad.jinsta.JInsta;
 import io.makepad.jinsta.models.Configuration;
-import java.io.File;
 
 public class Test {
 
@@ -19,7 +18,5 @@ public class Test {
     j.setUserProfile("yurtdisindaokumak");
 
     System.out.printf("The user full name %s", j.userProfile.getFullname());
-
-
   }
 }

@@ -10,7 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class UserProfile extends AbstractUserProfile  implements IUserProfile {
+public class UserProfile extends AbstractUserProfile implements IUserProfile {
   private final WebDriver driver;
   private final WebDriverWait wait;
   private String username;
@@ -28,6 +28,7 @@ public class UserProfile extends AbstractUserProfile  implements IUserProfile {
 
   /**
    * Function updates the username of the current UserProfile object
+   *
    * @param username The new username to change
    */
   public void setUsername(String username) {
@@ -36,6 +37,7 @@ public class UserProfile extends AbstractUserProfile  implements IUserProfile {
 
   /**
    * Returns the number of followers of the given user
+   *
    * @return The number of the followers for the current user profile
    */
   public int getNbFollowers() {
@@ -54,11 +56,12 @@ public class UserProfile extends AbstractUserProfile  implements IUserProfile {
     }
     element = this.driver.findElement(path);
     // Replace comma and space with empty text
-    return Integer.parseInt(element.getAttribute("title").replaceAll("(\\s+|,)",""));
+    return Integer.parseInt(element.getAttribute("title").replaceAll("(\\s+|,)", ""));
   }
 
   /**
    * Function returns the given user's full name if present
+   *
    * @return Full name of the current user if present, null if not
    */
   public String getFullname() {
@@ -76,6 +79,7 @@ public class UserProfile extends AbstractUserProfile  implements IUserProfile {
 
   /**
    * Returns the number of followings for the current user
+   *
    * @return The number of the followings of the current user
    */
   public int getNbFollowings() {
@@ -94,12 +98,12 @@ public class UserProfile extends AbstractUserProfile  implements IUserProfile {
     // Get the element
     WebElement element = this.driver.findElement(path);
     // Replace spaces and commas with nothing
-    return Integer.parseInt(element.getText().replaceAll("(\\s+|,)",""));
+    return Integer.parseInt(element.getText().replaceAll("(\\s+|,)", ""));
   }
-
 
   /**
    * Function returns the number of posts of the current user
+   *
    * @return The number of the current user
    */
   public int getNbPosts() {
@@ -117,39 +121,46 @@ public class UserProfile extends AbstractUserProfile  implements IUserProfile {
 
   /**
    * Function check if the user's contact list are visible
+   *
    * @return True if the user's contact list is visible
    */
   private boolean isContactsVisible() {
     super.goProfilePage(username, this.driver, this.wait);
-    return BotHelpers.isPresent(By.xpath(String.format("//a[@href='%s']", super.followersHref(username))), this.wait);
+    return BotHelpers.isPresent(
+        By.xpath(String.format("//a[@href='%s']", super.followersHref(username))), this.wait);
   }
 
   /**
    * function returns the array of the usernames of the current user
+   *
    * @return The array of usernames of current user's followers
    */
   public String[] getFollowers() {
     int nbFollowers = this.getNbFollowers();
-    if(this.isContactsVisible()) {
-      return super.getContactUserNames(super.followersHref(username), nbFollowers, this.driver, this.wait);
+    if (this.isContactsVisible()) {
+      return super.getContactUserNames(
+          super.followersHref(username), nbFollowers, this.driver, this.wait);
     }
     return null;
   }
 
   /**
    * Function returns the array of the current user's followings
+   *
    * @return The array of the following's usernames of the current user
    */
   public String[] getFollowings() {
     int nbFollowings = this.getNbFollowings();
     if (this.isContactsVisible()) {
-      return super.getContactUserNames(super.followingsHref(username), nbFollowings, this.driver, this.wait);
+      return super.getContactUserNames(
+          super.followingsHref(username), nbFollowings, this.driver, this.wait);
     }
     return null;
   }
 
   /**
    * Function returns links of the user's posts
+   *
    * @return A Set contains the links of the current user's posts
    */
   public Set<String> getPostLinks() {
@@ -165,6 +176,7 @@ public class UserProfile extends AbstractUserProfile  implements IUserProfile {
 
   /**
    * Function returns the given user's bio
+   *
    * @return The bio of the user if present, null if not
    */
   public String getBio() {
@@ -175,11 +187,9 @@ public class UserProfile extends AbstractUserProfile  implements IUserProfile {
     if (BotHelpers.isPresent(path, this.wait)) {
       this.wait.until(presenceOfElementLocated(path));
       this.driver.findElement(path);
-      element= this.driver.findElement(path);
+      element = this.driver.findElement(path);
       bio = (element.getText());
     }
     return bio;
   }
-
-
 }

@@ -13,13 +13,14 @@ public abstract class BotHelpers {
 
   /**
    * Function scrolls the given element
+   *
    * @param element The element to scroll
    */
   public static void scroll(WebElement element, WebDriver driver) {
-    JavascriptExecutor js = (JavascriptExecutor)driver;
-    js.executeScript("arguments[0].scrollBy(0,arguments[0].scrollHeight)",element);
+    JavascriptExecutor js = (JavascriptExecutor) driver;
+    js.executeScript("arguments[0].scrollBy(0,arguments[0].scrollHeight)", element);
     try {
-      int sleepFor = (int)(Math.random() * 100000);
+      int sleepFor = (int) (Math.random() * 100000);
       System.out.printf("Will sleep for %d\n", sleepFor);
       Thread.sleep(sleepFor);
     } catch (InterruptedException e) {
@@ -29,6 +30,7 @@ public abstract class BotHelpers {
 
   /**
    * Checks if the given selector is present on the screen
+   *
    * @param by The selector
    * @return True if the selector is present on the screen, false if not
    */
@@ -36,23 +38,16 @@ public abstract class BotHelpers {
     try {
       wait.until(presenceOfElementLocated(by));
       return true;
-    } catch (TimeoutException e)  {
+    } catch (TimeoutException e) {
       return false;
     }
   }
 
-
-
-
-
-  /**
-   * Function accepts the cookie banner
-   */
+  /** Function accepts the cookie banner */
   public static void acceptCookies(WebDriverWait wait, WebDriver driver) {
     By path = By.xpath("(//div[@role='dialog']//button)[1]");
     if (isPresent(path, wait)) {
-      WebElement acceptCookies = driver
-          .findElement(path);
+      WebElement acceptCookies = driver.findElement(path);
       acceptCookies.click();
     }
   }

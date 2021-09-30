@@ -13,7 +13,7 @@ public class Configuration {
     this.remoteFirefoxURL = remoteFirefoxURL;
   }
 
-  public Configuration (boolean useCookies, String cookiesPath) {
+  public Configuration(boolean useCookies, String cookiesPath) {
     this.useCookies = useCookies;
     this.cookiesPath = cookiesPath;
     this.remoteFirefoxURL = null;
@@ -21,6 +21,7 @@ public class Configuration {
 
   /**
    * Function checks if the cookies at given path exists or not
+   *
    * @return true if cookies exists on the given path, false if not
    */
   public boolean isCookiesExists() {

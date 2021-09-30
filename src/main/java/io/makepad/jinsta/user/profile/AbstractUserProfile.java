@@ -14,6 +14,7 @@ abstract class AbstractUserProfile {
 
   /**
    * Returns the href for the followings of the user
+   *
    * @param username
    * @return
    */
@@ -23,6 +24,7 @@ abstract class AbstractUserProfile {
 
   /**
    * Returns the href for the followers of the user
+   *
    * @param username
    * @return
    */
@@ -32,6 +34,7 @@ abstract class AbstractUserProfile {
 
   /**
    * Returns the URL for the given user's profile
+   *
    * @param username The user's username
    * @return The URL of the given user's profile
    */
@@ -39,16 +42,14 @@ abstract class AbstractUserProfile {
     return String.format("https://www.instagram.com/%s", username);
   }
 
-  /**
-   * Function scrolls the popup that contains the contact list
-   */
-   void scrollPopup(WebDriver driver) {
+  /** Function scrolls the popup that contains the contact list */
+  void scrollPopup(WebDriver driver) {
     BotHelpers.scroll(driver.findElement(By.className("isgrP")), driver);
   }
 
-
   /**
    * Function navigates to the user profile if the current url is different
+   *
    * @param username The username of the user that we want to navigate
    */
   void goProfilePage(String username, WebDriver driver, WebDriverWait wait) {
@@ -59,14 +60,15 @@ abstract class AbstractUserProfile {
     BotHelpers.acceptCookies(wait, driver);
   }
 
-
   /**
    * Function returns the array of the contact's username with given selector and max number
+   *
    * @param contactLinkSelector The selector of the contact button
    * @param max The max number of the contacts
    * @return The array of the contact's username or null if the contact information is not available
    */
-   String[] getContactUserNames(String contactLinkSelector, int max, WebDriver driver, WebDriverWait wait) {
+  String[] getContactUserNames(
+      String contactLinkSelector, int max, WebDriver driver, WebDriverWait wait) {
     String[] result = new String[max];
     String buttonSelector = String.format("//a[@href='%s']", contactLinkSelector);
     By followerPath = By.xpath(buttonSelector);
@@ -77,8 +79,9 @@ abstract class AbstractUserProfile {
     element.click();
     System.out.println("Here");
     // FIXME: This empty while loop is ugly, we need to fix this somehow
-    while (!driver.getCurrentUrl().equals(String.format("https://www.instagram.com%s", contactLinkSelector))) {
-    }
+    while (!driver
+        .getCurrentUrl()
+        .equals(String.format("https://www.instagram.com%s", contactLinkSelector))) {}
     System.out.println("Navigated");
     By followerListPath = By.xpath("//div[@role='dialog']");
     By followerRowPath = By.xpath("//div[@role='dialog']//ul//li");
@@ -91,11 +94,10 @@ abstract class AbstractUserProfile {
     }
     List<WebElement> followersList = driver.findElements(followerUserNamePath);
     WebElement followerElement;
-    for (int i =0; i<followersList.size(); i++) {
+    for (int i = 0; i < followersList.size(); i++) {
       followerElement = followersList.get(i);
       result[i] = followerElement.getAttribute("title");
     }
     return result;
   }
-
 }
