@@ -48,10 +48,10 @@ public class UserProfile extends AbstractUserProfile implements IUserProfile {
     super.goProfilePage(this.username, this.driver, this.wait);
     WebElement element;
     // First check if the user followers is a link
-    By path = By.xpath("/html/body/div[1]/section/main/div/header/section/ul/li[2]/a/span");
-    if (!BotHelpers.isPresent(path, this.wait)) {
+    By path = ProfileSelectors.CLICKABLE_FOLLOWERS;
+    if (!BotHelpers.isPresent(ProfileSelectors.CLICKABLE_FOLLOWERS, this.wait)) {
       // If not check if it's just a text
-      path = By.xpath("/html/body/div[1]/section/main/div/header/section/ul/li[2]/span/span");
+      path = ProfileSelectors.PRIVATE_PROFILE_FOLLOWERS;
       if (!BotHelpers.isPresent(path, this.wait)) {
         // If it is neither text nor a link, there's a problem
         // TODO: Throw a custom exception
@@ -74,11 +74,10 @@ public class UserProfile extends AbstractUserProfile implements IUserProfile {
     logger.info("Navigated to the user page");
     String fullName = null;
     WebElement element;
-    By path = By.xpath("//h1");
-    if (BotHelpers.isPresent(path, this.wait)) {
+    if (BotHelpers.isPresent(ProfileSelectors.FULL_NAME, this.wait)) {
       logger.debug("Full name is present on the user's profile");
-      this.wait.until(presenceOfElementLocated(path));
-      element = this.driver.findElement(path);
+      this.wait.until(presenceOfElementLocated(ProfileSelectors.FULL_NAME));
+      element = this.driver.findElement(ProfileSelectors.FULL_NAME);
       fullName = (element.getText());
       logger.info(String.format("full name of the user is %s", fullName));
     }
@@ -94,10 +93,10 @@ public class UserProfile extends AbstractUserProfile implements IUserProfile {
   public int getNbFollowings() {
     super.goProfilePage(this.username, this.driver, this.wait);
     // Check if the user followings number is a link
-    By path = By.xpath("/html/body/div[1]/section/main/div/header/section/ul/li[3]/a/span");
+    By path = ProfileSelectors.CLICKABLE_FOLLOWINGS;
     if (!BotHelpers.isPresent(path, this.wait)) {
       // If not check if it is just a text
-      path = By.xpath("/html/body/div[1]/section/main/div/header/section/ul/li[3]/span/span");
+      path = ProfileSelectors.PRIVATE_PROFILE_FOLLOWINGS;
       if (!BotHelpers.isPresent(path, this.wait)) {
         // If it is not throws an exception
         // TODO: Create custom exception
@@ -118,10 +117,8 @@ public class UserProfile extends AbstractUserProfile implements IUserProfile {
   public int getNbPosts() {
     super.goProfilePage(username, this.driver, this.wait);
     WebElement element;
-    By path;
-    path = By.xpath("/html/body/div[1]/section/main/div/header/section/ul/li[1]/span/span");
-    if (BotHelpers.isPresent(path, this.wait)) {
-      element = this.driver.findElement(path);
+    if (BotHelpers.isPresent(ProfileSelectors.NUMBER_OF_POSTS, this.wait)) {
+      element = this.driver.findElement(ProfileSelectors.NUMBER_OF_POSTS);
       return Integer.parseInt(element.getText().replaceAll("\\s+", ""));
     }
     // TODO: Throws a custom exception
@@ -174,9 +171,8 @@ public class UserProfile extends AbstractUserProfile implements IUserProfile {
    */
   public Set<String> getPostLinks() {
     int nbPosts = this.getNbPosts();
-    By path = By.xpath("//article//a");
     Set<String> result = new LinkedHashSet<String>(0);
-    if (nbPosts > 0 && BotHelpers.isPresent(path, this.wait)) {
+    if (nbPosts > 0 && BotHelpers.isPresent(ProfileSelectors.POST_LINKS, this.wait)) {
       result = new LinkedHashSet<String>(nbPosts);
     }
     // TODO: Complete function definition
@@ -190,13 +186,12 @@ public class UserProfile extends AbstractUserProfile implements IUserProfile {
    */
   public String getBio() {
     super.goProfilePage(this.username, this.driver, this.wait);
-    By path = By.xpath("/html/body/div[1]/section/main/div/header/section/div[2]/span");
     WebElement element;
     String bio = null;
-    if (BotHelpers.isPresent(path, this.wait)) {
-      this.wait.until(presenceOfElementLocated(path));
-      this.driver.findElement(path);
-      element = this.driver.findElement(path);
+    if (BotHelpers.isPresent(ProfileSelectors.BIO, this.wait)) {
+      this.wait.until(presenceOfElementLocated(ProfileSelectors.BIO));
+      this.driver.findElement(ProfileSelectors.BIO);
+      element = this.driver.findElement(ProfileSelectors.BIO);
       bio = (element.getText());
     }
     return bio;
