@@ -74,7 +74,7 @@ public class UserProfile extends AbstractUserProfile implements IUserProfile {
     logger.info("Navigated to the user page");
     String fullName = null;
     WebElement element;
-    By path = By.xpath("/html/body/div[1]/section/main/div/header/section/div[2]/h1");
+    By path = By.xpath("//h1");
     if (BotHelpers.isPresent(path, this.wait)) {
       logger.debug("Full name is present on the user's profile");
       this.wait.until(presenceOfElementLocated(path));
@@ -82,6 +82,7 @@ public class UserProfile extends AbstractUserProfile implements IUserProfile {
       fullName = (element.getText());
       logger.info(String.format("full name of the user is %s", fullName));
     }
+    logger.debug("Get full name function will return");
     return fullName;
   }
 

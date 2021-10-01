@@ -3,6 +3,8 @@ package io.makepad.jinsta;
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 
 import io.makepad.jinsta.models.Configuration;
+import io.makepad.jinsta.models.exceptions.CookieFileNotFoundException;
+import io.makepad.jinsta.models.exceptions.TwoFactorAuthenticationRequiredException;
 import io.makepad.jinsta.user.profile.UserProfile;
 import io.makepad.jinsta.utils.BotHelpers;
 import java.io.BufferedReader;
@@ -52,13 +54,21 @@ public class JInsta implements IBot {
     } else {
       this.driver = new RemoteWebDriver(new URL(config.remoteFirefoxURL), options);
     }
-    this.wait = new WebDriverWait(this.driver, Duration.ofSeconds(120));
+    this.wait = new WebDriverWait(this.driver, Duration.ofSeconds(5));
     this.driver.manage().window().maximize();
     this.driver.get("https://www.instagram.com/");
     this.config = config;
     userProfile = new UserProfile(this.driver, this.wait);
   }
 
+  /**
+   * Function handles the login action with username and password
+   *
+   * @param username The username for the current user
+   * @param password The password for the current user
+   * @throws TwoFactorAuthenticationRequiredException If the login ends with a two factor
+   *     authentication input
+   */
   public void login(String username, String password) throws Exception {
     BotHelpers.acceptCookies(this.wait, this.driver);
     final By userNameXPath = By.xpath("//input[@name='username']");
@@ -87,19 +97,23 @@ public class JInsta implements IBot {
       this.saveCookies();
       return;
     }
-    // TODO: Add custom expception to throw
-    throw new Exception();
+    throw new TwoFactorAuthenticationRequiredException("Login failed. Can not reach the feed");
   }
 
-  public void login() {
-    File f = new File(this.config.cookiesPath);
-    if (f.exists()) {
+  /**
+   * Function handles the login action with the cookies
+   *
+   * @throws CookieFileNotFoundException If cookie file is not found
+   */
+  public void login() throws CookieFileNotFoundException {
+    if (this.config.isCookiesExists()) {
       logger.info("Cookie file exists");
       this.loadCookies();
       logger.info("Cookies are loaded");
       return;
     }
-    // TODO: Add custom exception
+    throw new CookieFileNotFoundException(
+        String.format("cookie file %s does not exists", this.config.cookiesPath));
   }
 
   /**
