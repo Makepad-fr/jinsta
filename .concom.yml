@@ -1,0 +1,39 @@
+configfilepath: /Users/kaanyagci/Documents/makepad/jinsta/.concom.yml
+path: /Users/kaanyagci/Documents/makepad/jinsta
+version: 0.0.1
+scopes:
+    - name: auth
+      description: authentication module
+    - name: user-profile
+      description: user profile module
+    - name: user-posts
+      description: user posts module
+    - name: config
+      description: configuration related changes
+    - name: selectors
+      description: selectors related changes
+    - name: pom
+      description: pom file related changes
+    - name: spotless
+      description: changes related to splotless or done by spotless
+conventions:
+    - name: build
+      description: Changes that affect the build system or external dependencies
+    - name: ci
+      description: Changes to our CI configuration files and scripts
+    - name: docs
+      description: Documentation only changes
+    - name: feat
+      description: A new feature
+    - name: revert
+      description: 'If the commit reverts a previous commit, it should begin with revert: , followed by the header of the reverted commit. In the body it should say: This reverts commit <hash>., where the hash is the SHA of the commit being reverted.'
+    - name: fix
+      description: A bug fix
+    - name: perf
+      description: A code change that improves performance
+    - name: refactor
+      description: A code change that neither fixes a bug nor adds a feature
+    - name: style
+      description: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+    - name: test
+      description: Adding missing tests or correcting existing tests
