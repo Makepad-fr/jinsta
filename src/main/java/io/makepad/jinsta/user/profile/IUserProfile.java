@@ -1,23 +1,24 @@
+/* (C)2021 */
 package io.makepad.jinsta.user.profile;
 
 import java.util.Set;
 
 public interface IUserProfile {
-  void setUsername(String username);
+    void setUsername(String username);
 
-  int getNbFollowers();
+    int getNbFollowers();
 
-  String getFullname();
+    String getFullname();
 
-  int getNbFollowings();
+    int getNbFollowings();
 
-  int getNbPosts();
+    int getNbPosts();
 
-  String[] getFollowers();
+    String[] getFollowers();
 
-  String[] getFollowings();
+    String[] getFollowings();
 
-  Set<String> getPostLinks();
+    Set<String> getPostLinks();
 
-  String getBio();
+    String getBio();
 }
