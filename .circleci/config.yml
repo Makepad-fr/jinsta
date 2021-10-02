@@ -4,6 +4,13 @@ executors:
   java-openjdk:
     docker:
        - image: cimg/openjdk:15.0
+
+commands:
+  configure-gpg-keys:
+    steps:
+      - run:
+          name: Get keys from keyserver
+          command: gpg -v --keyserver hkp://${KEYSERVER_NAME} --recv-keys ${GPG_KEY_LONG}
 jobs:
   build:
     executor: java-openjdk
@@ -19,10 +26,12 @@ jobs:
       - run:
           name: Check with spotless
           command: mvn clean install spotless:check
-# Invoke jobs via workflows
-# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
+
 workflows:
   build-and-check:
     jobs:
-      - build
-      - spotless-check
+      - build:
+          context: makepad-maven-ossrh
+      - spotless-check:
+          context: makepad-maven-ossrh
+
