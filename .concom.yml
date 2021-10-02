@@ -18,6 +18,8 @@ scopes:
       description: changes related to splotless or done by spotless
     - name: logging
       description: All changes related logging
+    - name: circleci
+      description: All changes related to the CircleCI
 conventions:
     - name: build
       description: Changes that affect the build system or external dependencies
