@@ -16,6 +16,8 @@ scopes:
       description: pom file related changes
     - name: spotless
       description: changes related to splotless or done by spotless
+    - name: logging
+      description: All changes related logging
 conventions:
     - name: build
       description: Changes that affect the build system or external dependencies
