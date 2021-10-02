@@ -1,0 +1,28 @@
+version: 2.1
+
+executors:
+  java-openjdk:
+    docker:
+       - image: cimg/openjdk:11.0
+jobs:
+  build:
+    executor: java-openjdk
+    steps:
+      - checkout
+      - run:
+          name: Package
+          command: mvn -B -DskipTests clean package
+  spotless-check:
+    executor: java-openjdk
+    steps:
+      - checkout
+      - run:
+          name: Check with spotless
+          command: mvn clean install spotless:check
+# Invoke jobs via workflows
+# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
+workflows:
+  build-and-check:
+    jobs:
+      - build
+      - spotless-check
