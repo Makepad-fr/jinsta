@@ -16,6 +16,7 @@ jobs:
     executor: java-openjdk
     steps:
       - checkout
+      - configure-gpg-keys
       - run:
           name: Package
           command: mvn -B -DskipTests clean package
@@ -23,6 +24,7 @@ jobs:
     executor: java-openjdk
     steps:
       - checkout
+      - configure-gpg-keys
       - run:
           name: Check with spotless
           command: mvn clean install spotless:check
