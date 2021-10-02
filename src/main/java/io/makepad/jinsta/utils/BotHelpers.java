@@ -55,8 +55,10 @@ public abstract class BotHelpers {
     /** Function accepts the cookie banner */
     public static void acceptCookies(WebDriverWait wait, WebDriver driver) {
         By path = By.xpath("(//div[@role='dialog']//button)[1]");
+        logger.debug("Checking the cookies banner is present");
         if (isPresent(path, wait)) {
             WebElement acceptCookies = driver.findElement(path);
+            logger.debug("Clicking on the accept cookies button");
             acceptCookies.click();
         }
     }
