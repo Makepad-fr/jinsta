@@ -27,7 +27,7 @@ jobs:
       - configure-gpg-keys
       - run:
           name: Check with spotless
-          command: mvn clean install spotless:check
+          command: mvn spotless:check
 
 workflows:
   build-and-check:
