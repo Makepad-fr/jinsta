@@ -3,11 +3,11 @@ package io.makepad.jinsta;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 
-import io.makepad.jinsta.models.Configuration;
 import io.makepad.jinsta.models.exceptions.CookieFileNotFoundException;
 import io.makepad.jinsta.models.exceptions.TwoFactorAuthenticationRequiredException;
 import io.makepad.jinsta.user.profile.UserProfile;
-import io.makepad.jinsta.utils.BotHelpers;
+import io.makepad.socialwalker.commons.helpers.BotHelpers;
+import io.makepad.socialwalker.commons.models.Configuration;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;

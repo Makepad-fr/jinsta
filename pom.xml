@@ -4,7 +4,7 @@
 
   <groupId>io.makepad</groupId>
   <artifactId>jinsta</artifactId>
-  <version>0.0.2</version>
+  <version>0.0.3</version>
   <packaging>jar</packaging>
 
   <name>JInsta</name>
@@ -36,8 +36,8 @@
 
   <scm>
     <url>https://github.com/Makepad-fr/jinsta</url>
-    <connection>scm:git:git@$github.com/Makepad-fr/jinsta</connection>
-    <developerConnection>scm:git:git@$github.com/Makepad-fr/jinsta</developerConnection>
+    <connection>scm:git:git@github.com/Makepad-fr/jinsta.git</connection>
+    <developerConnection>scm:git:git@github.com/Makepad-fr/jinsta.git</developerConnection>
     <tag>jinsta-0.0.1</tag>
   </scm>
   <issueManagement>
@@ -47,7 +47,6 @@
     <system>CircleCI</system>
     <url>https://app.circleci.com/pipelines/github/Makepad-fr/jinsta</url>
   </ciManagement>
-
   <distributionManagement>
     <snapshotRepository>
       <id>ossrh</id>
@@ -64,42 +63,15 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>15</maven.compiler.source>
     <maven.compiler.target>15</maven.compiler.target>
-    <selenium.version>4.0.0-beta-3</selenium.version>
-    <log4j.api.version>
-      2.11.2
-    </log4j.api.version>
-    <log4j.core.version>
-      2.11.2
-    </log4j.core.version>
-    <spotless.version>2.15.0</spotless.version>
-    <dotenv.version>2.2.0</dotenv.version>
+    <socialwalker.commons.version>0.0.3</socialwalker.commons.version>
+    <spotless.version>2.17.0</spotless.version>
   </properties>
 
   <dependencies>
     <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>selenium-java</artifactId>
-      <version>${selenium.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>io.github.cdimascio</groupId>
-      <artifactId>dotenv-java</artifactId>
-      <version>${dotenv.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-api</artifactId>
-      <version>${log4j.api.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-core</artifactId>
-      <version>${log4j.core.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.diffplug.spotless</groupId>
-      <artifactId>spotless-maven-plugin</artifactId>
-      <version>${spotless.version}</version>
+      <groupId>io.makepad.socialwalker</groupId>
+      <artifactId>commons</artifactId>
+      <version>${socialwalker.commons.version}</version>
     </dependency>
   </dependencies>
 
