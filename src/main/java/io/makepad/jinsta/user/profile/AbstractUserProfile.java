@@ -4,7 +4,6 @@ package io.makepad.jinsta.user.profile;
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 
-import io.makepad.jinsta.utils.BotHelpers;
 import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
