@@ -36,8 +36,8 @@
 
   <scm>
     <url>https://github.com/Makepad-fr/jinsta</url>
-    <connection>scm:git:git@$github.com/Makepad-fr/jinsta</connection>
-    <developerConnection>scm:git:git@$github.com/Makepad-fr/jinsta</developerConnection>
+    <connection>scm:git:git@github.com/Makepad-fr/jinsta.git</connection>
+    <developerConnection>scm:git:git@github.com/Makepad-fr/jinsta.git</developerConnection>
     <tag>jinsta-0.0.1</tag>
   </scm>
   <issueManagement>
