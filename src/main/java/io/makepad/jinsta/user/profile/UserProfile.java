@@ -4,6 +4,7 @@ package io.makepad.jinsta.user.profile;
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 
 import io.makepad.jinsta.JInsta;
+import io.makepad.socialwalker.commons.helpers.BotHelpers;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import org.apache.logging.log4j.LogManager;
