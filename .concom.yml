@@ -28,6 +28,8 @@ scopes:
       description: All changes related example app
     - name: readme
       description: All changes related to README
+    - name: templates
+      description: All changes related to templates
 conventions:
     - name: build
       description: Changes that affect the build system or external dependencies
