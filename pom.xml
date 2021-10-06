@@ -4,7 +4,6 @@
 
   <groupId>io.makepad</groupId>
   <artifactId>jinsta</artifactId>
-  <description>A toolkit to automate Instagram interactions.</description>
   <version>0.0.3</version>
   <modules>
     <module>example</module>
