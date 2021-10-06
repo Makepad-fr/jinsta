@@ -1,5 +1,5 @@
 <div align="center">
-	<img src="https://github.com/Makepad-fr/jinsta/blob/master/icon.png?raw=true" alt="Image" />
+	<img src="https://github.com/Makepad-fr/jinsta/blob/c8f511003e97b74ba19cb538046a77871fa61785/icon.png?raw=true" alt="Image" />
 </div>
 
 <a href="https://foojay.io/today/works-with-openjdk">
@@ -35,10 +35,18 @@ You can add `io.makepad.jinsta` in your `pom.xml` file as a dependency.
 ## Usage
 
 For a usage example please check  [the example project](./example).
+```xml
+<dependency>
+    <groupId>io.makepad</groupId>
+    <artifactId>jinsta</artifactId>
+    <version>0.0.2</version>
+</dependency>
+````
 
 ## Contributing
 
 The project is under active development. All kinds of contributions are welcome.
+<<<<<<< Updated upstream
 All interactions in our official communication channels follow our [Code of Conduct](./CODE_OF_CONDUCT.md).
 
 ### Having a trouble?
@@ -50,3 +58,4 @@ We're really sorry to hear that. Please [create a new issue](https://www.github.
 Please refer our [contributing guidelines](./CONTRIBUTING.md)
 
 > Disclaimer: Please note that this is a research project. Makepad or any other developer of this project by no means responsible for any usage of this tool. Use it on your behalf. We are also not responsible if your accounts get banned due to the extensive use of this tool.
+
