@@ -20,6 +20,14 @@ scopes:
       description: All changes related logging
     - name: circleci
       description: All changes related to the CircleCI
+    - name: depdendencies
+      description: All changes related dependencies
+    - name: assets
+      description: all changes related assets
+    - name: example
+      description: All changes related example app
+    - name: readme
+      description: All changes related to README
 conventions:
     - name: build
       description: Changes that affect the build system or external dependencies
