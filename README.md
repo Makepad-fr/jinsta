@@ -47,6 +47,6 @@ We're really sorry to hear that. Please [create a new issue](https://www.github.
 
 ### Want to contribute?
 
-You can either take a look to the [issues](https://github.com/Makepad-fr/jinsta/issues) to inspire. If you've already an idea, feel free to send us your pull request. We'll review it ASAP.
+Please refer our [contributing guidelines](./CONTRIBUTING.md)
 
 > Disclaimer: Please note that this is a research project. Makepad or any other developer of this project by no means responsible for any usage of this tool. Use it on your behalf. We are also not responsible if your accounts get banned due to the extensive use of this tool.
