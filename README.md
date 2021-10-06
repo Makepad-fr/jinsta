@@ -4,7 +4,7 @@
 
 <a href="https://foojay.io/today/works-with-openjdk">
 <img align="right"
-src="https://github.com/foojayio/badges/raw/main/works_with_openjdk/Works-with-OpenJDK.png"   
+src="https://github.com/foojayio/badges/raw/main/works_with_openjdk/Works-with-OpenJDK.png"
 width="100">
 </a>
 
@@ -26,9 +26,9 @@ You can add `io.makepad.jinsta` in your `pom.xml` file as a dependency.
 
 ```xml
 <dependency>
-<groupId>io.makepad</groupId>
-<artifactId>jinsta</artifactId>
-<version>0.0.2</version>
+	<groupId>io.makepad</groupId>
+	<artifactId>jinsta</artifactId>
+	<version>0.0.4</version>
 </dependency>
 ```
 
@@ -40,12 +40,13 @@ For a usage example please check  [the example project](./example).
 
 The project is under active development. All kinds of contributions are welcome.
 All interactions in our official communication channels follow our [Code of Conduct](./CODE_OF_CONDUCT.md).
+
 ### Having a trouble?
 
 We're really sorry to hear that. Please [create a new issue](https://www.github.com/Makepad-fr/jinsta/issues/new) and we'll try to fix it ASAP.
 
 ### Want to contribute?
 
-You can either take a look to the [issues](https://github.com/Makepad-fr/jinsta/issues) to inspire. If you've already an idea, feel free to send us your pull request. We'll review it ASAP. 
+You can either take a look to the [issues](https://github.com/Makepad-fr/jinsta/issues) to inspire. If you've already an idea, feel free to send us your pull request. We'll review it ASAP.
 
 > Disclaimer: Please note that this is a research project. Makepad or any other developer of this project by no means responsible for any usage of this tool. Use it on your behalf. We are also not responsible if your accounts get banned due to the extensive use of this tool.
