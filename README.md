@@ -37,9 +37,9 @@ You can add `io.makepad.jinsta` in your `pom.xml` file as a dependency.
 For a usage example please check  [the example project](./example).
 ```xml
 <dependency>
-    <groupId>io.makepad</groupId>
-    <artifactId>jinsta</artifactId>
-    <version>0.0.2</version>
+	<groupId>io.makepad</groupId>
+	<artifactId>jinsta</artifactId>
+	<version>0.0.2</version>
 </dependency>
 ````
 
@@ -58,4 +58,3 @@ We're really sorry to hear that. Please [create a new issue](https://www.github.
 Please refer our [contributing guidelines](./CONTRIBUTING.md)
 
 > Disclaimer: Please note that this is a research project. Makepad or any other developer of this project by no means responsible for any usage of this tool. Use it on your behalf. We are also not responsible if your accounts get banned due to the extensive use of this tool.
-
