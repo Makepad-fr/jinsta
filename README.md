@@ -35,13 +35,6 @@ You can add `io.makepad.jinsta` in your `pom.xml` file as a dependency.
 ## Usage
 
 For a usage example please check  [the example project](./example).
-```xml
-<dependency>
-	<groupId>io.makepad</groupId>
-	<artifactId>jinsta</artifactId>
-	<version>0.0.2</version>
-</dependency>
-````
 
 ## Contributing
 
