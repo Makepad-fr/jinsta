@@ -5,10 +5,7 @@
   <groupId>io.makepad</groupId>
   <artifactId>jinsta</artifactId>
   <version>0.0.5</version>
-  <modules>
-    <module>example</module>
-  </modules>
-  <packaging>pom</packaging>
+  <packaging>jar</packaging>
 
   <name>JInsta</name>
   <description>A toolkit to automate Instagram interactions</description>
@@ -69,6 +66,20 @@
     <socialwalker.commons.version>0.0.3</socialwalker.commons.version>
     <spotless.version>2.17.0</spotless.version>
   </properties>
+  <profiles>
+    <profile>
+      <id>dev</id>
+      <activation>
+        <property>
+          <name>environment</name>
+          <value>debug</value>
+        </property>
+      </activation>
+      <properties>
+        <exec.mainClass>io.makepad.example.Example</exec.mainClass>
+      </properties>
+    </profile>
+  </profiles>
 
   <dependencies>
     <dependency>
@@ -80,6 +91,16 @@
 
   <build>
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.2.0</version>
+        <configuration>
+          <excludes>
+            <exclude>**/example/*</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>org.sonatype.plugins</groupId>
         <artifactId>nexus-staging-maven-plugin</artifactId>
@@ -103,6 +124,11 @@
             </goals>
           </execution>
         </executions>
+        <configuration>
+          <excludes>
+            <exclude>**/example/*</exclude>
+          </excludes>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
