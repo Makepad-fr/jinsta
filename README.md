@@ -28,7 +28,7 @@ You can add `io.makepad.jinsta` in your `pom.xml` file as a dependency.
 <dependency>
 	<groupId>io.makepad</groupId>
 	<artifactId>jinsta</artifactId>
-	<version>0.0.4</version>
+	<version>0.0.5</version>
 </dependency>
 ```
 

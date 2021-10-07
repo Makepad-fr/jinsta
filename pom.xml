@@ -4,7 +4,7 @@
 
   <groupId>io.makepad</groupId>
   <artifactId>jinsta</artifactId>
-  <version>0.0.4</version>
+  <version>0.0.5</version>
   <modules>
     <module>example</module>
   </modules>
