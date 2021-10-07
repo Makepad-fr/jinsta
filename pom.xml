@@ -4,8 +4,11 @@
 
   <groupId>io.makepad</groupId>
   <artifactId>jinsta</artifactId>
-  <version>0.0.3</version>
-  <packaging>jar</packaging>
+  <version>0.0.5</version>
+  <modules>
+    <module>example</module>
+  </modules>
+  <packaging>pom</packaging>
 
   <name>JInsta</name>
   <description>A toolkit to automate Instagram interactions</description>
