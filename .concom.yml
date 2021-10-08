@@ -32,6 +32,8 @@ scopes:
       description: All changes related to templates
     - name: version
       description: All changes related to version
+    - name: core
+      description: Changes related the core library
 conventions:
     - name: build
       description: Changes that affect the build system or external dependencies
