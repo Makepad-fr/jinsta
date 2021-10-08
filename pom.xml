@@ -63,7 +63,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>15</maven.compiler.source>
     <maven.compiler.target>15</maven.compiler.target>
-    <socialwalker.commons.version>0.0.3</socialwalker.commons.version>
+    <socialwalker.commons.version>0.0.4</socialwalker.commons.version>
     <spotless.version>2.17.0</spotless.version>
   </properties>
   <profiles>
