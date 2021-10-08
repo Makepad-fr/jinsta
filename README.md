@@ -38,7 +38,7 @@ For a usage example please check  [the example package](./src/main/java/io/makep
 
 To run the example project use:
 ```sh
-mvn clean install compile exec:java -Denvironment=debug
+INTAGRAM_USERNAME=<your_instagram_username> INSTAGRAM_PASSWORD=<your_instagram_password> mvn clean install compile exec:java -Denvironment=debug
 ```
 
 ## Contributing
