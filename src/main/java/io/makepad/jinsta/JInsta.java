@@ -16,7 +16,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class JInsta extends AbstractBot implements IBot {
+public class JInsta extends AbstractBot {
 
     public UserProfile userProfile;
     private static final Logger logger = LogManager.getLogger(JInsta.class);
