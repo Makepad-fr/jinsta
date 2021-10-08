@@ -28,13 +28,18 @@ You can add `io.makepad.jinsta` in your `pom.xml` file as a dependency.
 <dependency>
 	<groupId>io.makepad</groupId>
 	<artifactId>jinsta</artifactId>
-	<version>0.0.5</version>
+	<version>0.0.6</version>
 </dependency>
 ```
 
 ## Usage
 
-For a usage example please check  [the example project](./example).
+For a usage example please check  [the example package](./src/main/java/io/makepad/example).
+
+To run the example project use:
+```sh
+mvn clean install compile exec:java -Denvironment=debug
+```
 
 ## Contributing
 
